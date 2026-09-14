@@ -16,6 +16,7 @@ int main(int argc, char **argv) {
     option_type = j.at("model type").get<std::string>();
     j.at("option size").get_to(size);
     j.at("volatility").get_to(volatility);
+    
     if (volatility->size == 1 && size > 1) {
         pnl_vect_resize_from_scalar(volatility, size, GET(volatility, 0));
     }
