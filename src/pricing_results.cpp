@@ -11,6 +11,7 @@ PricingResults::PricingResults(double p_price, double p_priceStdDev, const PnlVe
 
 
 std::ostream& operator<<(std::ostream& o, const PricingResults& res)
+
 {
 
     nlohmann::json j = {

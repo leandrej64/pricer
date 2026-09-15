@@ -13,6 +13,5 @@ class Options {
         PnlVect* payoff_coeffs;
 
         Options(double p_maturity, double p_strike, int p_timestep_number,  PnlVect* p_payoff_coeffs=nullptr);
-        
-        virtual double payoff(PnlMat* spots) = 0; 
+        virtual double payoff(PnlMat* path) = 0; 
 };

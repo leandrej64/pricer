@@ -5,19 +5,19 @@
 #include <cmath>
 
 
-
 class BlackScholes{
     public:
     double risk_free;
-    double step_size;
-    int path_length;
     PnlMat* correlation_matrix;
     PnlMat * choleski_matrix_transpose;
+    PnlMat * choleski;
     PnlVect * volatilities;
-    
-    BlackScholes(double p_risk_free,PnlMat * p_correlation_matrix,PnlVect * p_volatilities,double p_step_size,int p_path_length);
-    void sample_path(PnlMat* past,double t,PnlMat* path,PnlRng* rng);
-    PnlMat* build_random_matrix(PnlRng* rng);
-    PnlMat* shift_asset(PnlMat* path,int asset,double fd_step);
+    PnlMat * random_matrix;
+    PnlMat * scalar_prod;
+    PnlVect* random_vect;
+
+    BlackScholes(double p_risk_free,PnlMat * p_correlation_matrix,PnlVect * p_volatilities);
+    void sample_path(PnlMat* past,double regular_step_size, double first_step_size,PnlMat* path,PnlRng* rng);
+    void shift_asset(PnlMat * shifted_path, PnlMat* path,int asset,double fd_step);
 
 }; 

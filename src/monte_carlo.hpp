@@ -6,20 +6,19 @@
 #include <cmath>
 #include "black_scholes.hpp"
 #include "pricing_results.hpp"
+#include <algorithm>
 
-class MonteCarlo{ 
+class MonteCarloPricer{ 
     public : 
     int nb_simulations;
-    double variance_estimate; 
-    double mean_estimate; 
+    Options * option;
+    BlackScholes * model;
 
-    MonteCarlo(int nb_simulations);
-
-    PnlVect * sample();
+    MonteCarloPricer(int nb_simulations,Options* option,BlackScholes* model);
 
     double compute_average(PnlVect* samples);
-    double compute_variance(PnlVect* samples);
-    PricingResults* price(Options* option,PnlMat* past,int date_number,double t,BlackScholes bs_model,double fd_step,double interest_rate);
+    double compute_variance(PnlVect* samples,double mean);
+    PricingResults* price(PnlMat* market_data,double t,double fd_step,double interest_rate,int hedging_dates_number);
 
 };
 
