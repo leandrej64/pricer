@@ -42,29 +42,17 @@ endif()
 
 ### Ne rien modifier dans la partie au dessus de cette ligne.
 
-# Test the parser
-add_executable(test_json_reader src/json_helper.cpp src/test_json_reader.cpp)
-target_link_libraries(test_json_reader
-    ${PNL_LIBRARIES}
-    nlohmann_json::nlohmann_json
-)
-pnl_add_postbuild(test_json_reader)
-
-add_executable(test_compute_lastdate src/test_compute_lastdate.cpp)
-
 # Pour compiler vos exécutables, compléter les lignes ci-dessous.
 
-# add_executable(price0 _liste_des_fichiers_cpp)
-# target_link_libraries(price0
-#     ${PNL_LIBRARIES}
-#     nlohmann_json::nlohmann_json
-# )
 
-# add_executable(hedge _liste_des_fichiers_cpp)
-# target_link_libraries(hedge
-#     ${PNL_LIBRARIES}
-#     nlohmann_json::nlohmann_json
-# )
+
+add_executable(price src/price.cpp src/black_scholes.cpp src/json_parser.cpp src/json_helper.cpp src/monte_carlo.cpp src/Options/asian_option.cpp src/Options/basket_option.cpp src/options.cpp src/pricing_results.cpp src/Options/perf_option.cpp)
+target_link_libraries(price
+    ${PNL_LIBRARIES}
+)
+pnl_add_postbuild(price)
+
+
 
 
 # Print compiler flags
