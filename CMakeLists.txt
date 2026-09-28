@@ -40,17 +40,18 @@ if (NOT nlohmann_json_FOUND)
     FetchContent_MakeAvailable(json)
 endif()
 
-### Ne rien modifier dans la partie au dessus de cette ligne.
-
-# Pour compiler vos exécutables, compléter les lignes ci-dessous.
-
-
-
 add_executable(price src/price.cpp src/black_scholes.cpp src/json_parser.cpp src/json_helper.cpp src/monte_carlo.cpp src/Options/asian_option.cpp src/Options/basket_option.cpp src/options.cpp src/pricing_results.cpp src/Options/perf_option.cpp)
 target_link_libraries(price
     ${PNL_LIBRARIES}
 )
 pnl_add_postbuild(price)
+
+add_library(pricer_capi SHARED src/capi.cpp src/black_scholes.cpp src/json_parser.cpp src/json_helper.cpp src/monte_carlo.cpp src/Options/asian_option.cpp src/Options/basket_option.cpp src/options.cpp src/pricing_results.cpp src/Options/perf_option.cpp)
+target_link_libraries(pricer_capi
+    ${PNL_LIBRARIES}
+)
+target_compile_options(pricer_capi PRIVATE -O3)
+pnl_add_postbuild(pricer_capi)
 
 
 

@@ -40,8 +40,8 @@ void BlackScholes::sample_path(PnlMat* past, double regular_step_size, double fi
     pnl_vect_free(&choleski_row);
 }
 
-void BlackScholes::shift_asset(PnlMat * shifted_path, PnlMat* path,int asset,double fd_step){
-    for(int i=0;i<path->m;i++){ 
+void BlackScholes::shift_asset(PnlMat * shifted_path, PnlMat* path,int asset,double fd_step,int first_index){
+    for(int i=first_index;i<path->m;i++){  
         pnl_mat_set(shifted_path,i,asset,pnl_mat_get(path,i,asset)*(1+fd_step));
     }
 }

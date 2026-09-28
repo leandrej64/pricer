@@ -13,5 +13,6 @@ double PerfOption::payoff(PnlMat* spots){
         double partial_payoff = std::max(ratio-1.0,0.0);
         payoff += partial_payoff;
     }
+    pnl_vect_free(&perf);
     return payoff;
 };

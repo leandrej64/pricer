@@ -23,4 +23,4 @@ struct OptionData {
 };
 
 
-OptionData json_parser(char* json_file);
+OptionData json_parser(const char* json_file);

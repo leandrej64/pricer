@@ -1,7 +1,7 @@
 #include "json_parser.hpp"
 
 
-OptionData json_parser(char* json_file){ 
+OptionData json_parser(const char* json_file){
     std::ifstream ifs(json_file);
     nlohmann::json j = nlohmann::json::parse(ifs);
     int nb_assets;

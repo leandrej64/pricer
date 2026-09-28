@@ -9,6 +9,11 @@ PricingResults::PricingResults(double p_price, double p_priceStdDev, const PnlVe
     , deltaStdDev(p_deltaStdDev)
     { }
 
+double PricingResults::get_price() const { return price; }
+double PricingResults::get_price_std_dev() const { return priceStdDev; }
+const PnlVect* PricingResults::get_delta() const { return delta; }
+const PnlVect* PricingResults::get_delta_std_dev() const { return deltaStdDev; }
+
 
 std::ostream& operator<<(std::ostream& o, const PricingResults& res)
 
